@@ -1,0 +1,25 @@
+-------9-0 TIMER INTERRUPT-------
+JMP SETUP
+DB 5A
+
+SETUP:
+MOV AL,39
+MOV CL,C0
+JMP MAINCODE
+
+ORG 5A
+MAINCODE:
+    CMP AL,30
+    JS END
+    MOV [CL],AL
+    DEC AL
+    STI
+    JMP LOOP
+
+ORG 20
+LOOP:
+    JMP LOOP
+
+
+END:
+    END

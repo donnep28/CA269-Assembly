@@ -1,0 +1,24 @@
+MOV AL, C0
+MOV [30], AL
+
+CALL 50
+
+MOV AL, FF
+MOV [30], AL
+
+CALL 50
+
+HALT
+
+ORG 50
+MOV AL, [30]
+MOV CL, 2A
+MOV [AL], CL
+RET
+
+
+END
+
+
+
+

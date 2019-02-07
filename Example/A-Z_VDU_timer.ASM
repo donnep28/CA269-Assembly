@@ -1,0 +1,28 @@
+-----A-Z VDU TIMER------
+JMP SETUP
+DB 50
+
+SETUP:
+    MOV AL,41
+    MOV CL,C0
+
+    JMP START
+
+ORG 50
+START:
+
+    MOV [CL],AL
+    INC AL
+    INC CL
+    CMP AL,5B
+    JNS END
+
+    STI
+    JMP LOOP
+
+ORG 20
+LOOP:
+    JMP LOOP
+
+END:
+    END

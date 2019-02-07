@@ -1,0 +1,24 @@
+ORG 90
+DB CF ; IS FOR 9
+DB FF ; IS FOR 8
+DB CB ; IS FOR 7
+DB 7D ; IS FOR 6
+DB DD ; IS FOR 5
+DB 4F ; IS FOR 4
+DB 9F ; IS FOR 3
+DB B7 ; IS FOR 2
+DB 0B ; IS FOR 1
+DB FB ; IS FOR 0
+
+ORG 00
+MOV CL, 90
+JUMPY:
+	MOV AL, [CL] ; The code for a 2 on the right hand side
+	OUT 02 ; Send the code out
+	INC CL
+	CMP CL,9A
+	JNZ JUMPY
+	JMP END
+
+END:
+	END

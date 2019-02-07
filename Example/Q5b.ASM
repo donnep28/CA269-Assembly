@@ -1,0 +1,33 @@
+	JMP START
+	DB 13
+
+START:
+	IN 00
+	SUB AL, 30
+	MOV CL, C0	
+	JMP CYCLE
+
+ORG 13
+CYCLE:
+	CMP AL, 00
+	JNZ MAINCODE
+	JMP END
+	
+ORG 60
+
+MAINCODE:
+	STI
+	PUSH AL
+	POP BL
+	ADD BL, 30
+	MOV [CL], BL
+	DEC AL
+
+LOOP:						; This is the interrupt LOOP		
+	JMP LOOP
+
+IRET
+
+ORG 30
+END:
+	END

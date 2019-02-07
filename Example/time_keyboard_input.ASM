@@ -1,0 +1,31 @@
+-------TIME KEYBOARD INPUT---------
+JMP SETUP
+DB 50
+
+SETUP:
+
+    MOV CL,BF
+
+    JMP START
+
+
+ORG 50
+START:
+    IN 00
+    INC CL
+    STI
+    JMP LOOP
+
+
+
+ORG 20
+
+LOOP:
+    MOV [CL],AL
+    JMP LOOP
+
+
+
+
+
+END

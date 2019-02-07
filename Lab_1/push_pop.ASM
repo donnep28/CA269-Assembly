@@ -1,0 +1,8 @@
+MOV AL, 5
+MOV BL, 6
+
+PUSH AL
+PUSH BL
+
+POP BL
+POP AL

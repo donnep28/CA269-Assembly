@@ -1,0 +1,38 @@
+ORG 90
+
+DB FB ; IS FOR 0
+DB 0B ; IS FOR 1
+DB B7 ; IS FOR 2
+DB 9F ; IS FOR 3
+DB 4F ; IS FOR 4
+DB DD ; IS FOR 5
+DB 7D ; IS FOR 6
+DB CB ; IS FOR 7
+DB FF ; IS FOR 8
+DB CF ; IS FOR 9
+
+ORG 0
+
+CLEAR:
+    MOV AL, 0
+    OUT 02
+
+MAIN:
+    MOV AL, 0
+    IN 08
+    CMP AL, 31
+    JS MAIN
+    CMP AL, 38
+    JNS MAIN
+
+    ADD AL, 60
+    PUSH AL
+    POP CL
+
+    JMP DISPLAY
+
+DISPLAY:
+    MOV AL, [CL]
+    OUT 02
+
+END

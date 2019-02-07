@@ -1,0 +1,71 @@
+;LEFT SIDE
+
+ORG 80
+DB FA ; IS FOR 0
+DB 0A ; IS FOR 1
+DB B6 ; IS FOR 2 
+DB 9E ; IS FOR 3
+DB 4E ; IS FOR 4
+DB DC ; IS FOR 5
+DB 7C ; IS FOR 6
+DB CA ; IS FOR 7
+DB FE ; IS FOR 8
+DB CE ; IS FOR 9
+
+
+;RIGHT SIDE
+
+ORG 90 
+DB FB ; IS FOR 0
+DB 0B ; IS FOR 1
+DB B7 ; IS FOR 2
+DB 9F ; IS FOR 3
+DB 4F ; IS FOR 4
+DB DD ; IS FOR 5
+DB 7D ; IS FOR 6
+DB CB ; IS FOR 7
+DB FF ; IS FOR 8
+DB CF ; IS FOR 9
+DB EF ; IS FOR A
+DB FF ; IS FOR B
+DB F1 ; IS FOR C
+DB FB ; IS FOR D
+DB F5 ; IS FOR E
+DB E5 ; IS FOR F
+
+
+ORG 00
+
+START:
+    IN 00
+    CMP AL, 71
+    JZ END
+    PUSH AL
+
+    AND AL, 0F
+    PUSH AL
+    POP CL         ;CL IS RIGHT
+    POP AL
+    AND AL, F0
+    PUSH AL
+    POP BL
+    DIV BL, 10
+
+    ADD BL, 80
+
+    MOV AL, 00
+    MOV AL, [BL]
+    OUT 02
+
+    ADD CL, 90
+
+    MOV AL, 00
+    MOV AL, [CL]
+    OUT 02
+
+    JMP START
+
+
+
+END:
+    END
